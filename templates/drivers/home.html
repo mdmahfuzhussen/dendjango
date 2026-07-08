@@ -111,22 +111,20 @@
           </div>
         {% endif %}
 
-      {% if user.is_authenticated %}
-        <form method="post" action="{% url 'drivers:submit_review' %}" class="review-form">
-            {% csrf_token %}
-            <label for="id_comment">Your Review</label>
-            {{ review_form.comment }}
-            <label>Rating</label>
-            <div class="rating-options">
-                {{ review_form.rating }}
-            </div>
-            <button type="submit">Submit Review</button>
-        </form>
-        {% else %}
-            <p class="booking-login-note">
-                Review submission is temporarily unavailable.
-            </p>
-        {% endif %}
+      <section class="booking" id="booking">
+    <h2>Book a Lesson</h2>
+
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <p>Online booking is coming soon.</p>
+
+</section>
       </section>
 
       <section class="service-area fade-in" id="area">
@@ -161,23 +159,14 @@
 
       <section class="review-submit-section fade-in" id="review-submit">
         <div class="review-submit-card">
-          <h2>Leave a Review</h2>
-          {% if user.is_authenticated %}
-            <form method="post" action="{% url 'drivers:submit_review' %}" class="review-form">
-              {% csrf_token %}
-              <label for="id_comment">Your Review</label>
-              {{ review_form.comment }}
-              <label>Rating</label>
-              <div class="rating-options">
-                {{ review_form.rating }}
-              </div>
-              <button type="submit">Submit Review</button>
-            </form>
-          {% else %}
-            <p class="booking-login-note">Please <a href="{% url 'login' %}">login</a> to leave a review.</p>
-          {% endif %}
+            <h2>Leave a Review</h2>
+        
+            <p class="booking-login-note">
+              Review submission is coming soon.
+            </p>
+        
         </div>
-      </section>
+    </section>
 
       <section class="faq fade-in" id="faq">
         <h2>Frequently Asked Questions</h2>
