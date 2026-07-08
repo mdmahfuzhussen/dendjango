@@ -111,26 +111,21 @@
           </div>
         {% endif %}
 
-        {% if user.is_authenticated %}
-          <form method="post" action="{% url 'drivers:booking' %}" class="booking-form" id="booking-form">
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'drivers:submit_review' %}" class="review-form">
             {% csrf_token %}
-            {{ booking_form.non_field_errors }}
-            {{ booking_form.name }}
-            {{ booking_form.email }}
-            
-            {% if booking_form.phone %}
-              {{ booking_form.phone }}
-            {% else %}
-              <input type="tel" name="phone" placeholder="Phone Number" required>
-            {% endif %}
-            
-            {{ booking_form.date }}
-            {{ booking_form.time }}
-            {{ booking_form.message }}
-            <button type="submit">Book Now</button>
-          </form>
+            <label for="id_comment">Your Review</label>
+            {{ review_form.comment }}
+            <label>Rating</label>
+            <div class="rating-options">
+                {{ review_form.rating }}
+            </div>
+            <button type="submit">Submit Review</button>
+        </form>
         {% else %}
-          <p class="booking-login-note">Please <a href="#">login</a> or <a href="#">signup</a> to book a lesson.</p>
+            <p class="booking-login-note">
+                Review submission is temporarily unavailable.
+            </p>
         {% endif %}
       </section>
 
